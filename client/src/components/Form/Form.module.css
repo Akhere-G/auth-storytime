@@ -1,0 +1,101 @@
+h2.title {
+  margin: 0;
+  padding: 0;
+}
+
+.error {
+  text-align: center;
+  margin: 0.5em auto;
+  animation: fadeIn 300ms ease-in forwards;
+  transition: var(--transition);
+}
+
+@keyframes fadeIn {
+  0% {
+    color: transparent;
+    background-color: transparent;
+  }
+
+  100% {
+    color: var(--danger);
+    background-color: var(--danger-light);
+  }
+}
+
+.link {
+  font-size: 0.7rem;
+  transition: var(--transition);
+}
+
+.link a {
+  display: inline;
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
+  color: var(--focus-dark);
+}
+
+.link a:after {
+  content: "";
+  bottom: 0;
+  left: 0px;
+  width: 0%;
+  height: 1px;
+  background-color: var(--focus-dark);
+
+  position: absolute;
+  transition: var(--transition);
+}
+
+.link a:hover:after {
+  width: 100%;
+  background-color: var(--focus-dark);
+  transition: var(--transition);
+}
+
+.formGroup {
+  display: flex;
+  align-items: baseline;
+  position: relative;
+  flex-direction: column;
+}
+
+.formGroup > input,
+.formGroup > select,
+.formGroup > .input {
+  color: var(--primary);
+  width: 100%;
+  flex: 1;
+  border-radius: 0.5em;
+  border: solid 1px var(--primary);
+  background: var(--secondary);
+  padding: 0.6em;
+  margin: 0.5em auto;
+  display: inline;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+}
+
+.formBtnGroup {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.formBtnGroup > input {
+  margin: 0;
+}
+.formGroup > select {
+  border: none;
+}
+
+.formGroup > input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.formGroup > input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}

@@ -1,0 +1,28 @@
+.home li {
+  width: 100%;
+  height: 100%;
+  margin: 0em 0em 1em 0em;
+}
+
+@media screen and (min-width: 600px) {
+  .home {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .home li {
+    width: 100%;
+    height: 100%;
+    margin: 0.5em;
+    flex-grow: 1;
+  }
+
+  .form {
+    flex: 0.7;
+    min-width: 50%;
+  }
+
+  .stories {
+    flex: 2;
+  }
+}

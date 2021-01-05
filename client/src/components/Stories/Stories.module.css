@@ -1,0 +1,13 @@
+@media screen and (min-width: 700px) {
+  .stories {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.story {
+  flex-basis: 30%;
+  flex-grow: 1;
+  display: flex;
+  height: 100%;
+}

@@ -1,0 +1,25 @@
+.logo {
+  background-color: var(--secondary);
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 1em;
+}
+
+.logo > h2 {
+  color: var(--primary);
+  text-align: center;
+  font-weight: 600;
+  animation: spaceOut 300ms ease-in 50ms forwards;
+  transition-delay: 500ms;
+  margin: 0;
+}
+
+@keyframes spaceOut {
+  0% {
+    letter-spacing: 0em;
+  }
+
+  100% {
+    letter-spacing: 0.3em;
+  }
+}

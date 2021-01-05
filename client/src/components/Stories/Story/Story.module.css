@@ -1,0 +1,130 @@
+.hide {
+  animation: flipOut 300ms ease-in forwards;
+}
+
+.show {
+  animation: flipIn 300ms ease-in forwards;
+}
+
+.story {
+  background-color: var(--secondary);
+  transition: var(--transition);
+  border-radius: 1em;
+  box-shadow: 2px 3px 4px #0007;
+  min-width: 210px;
+  width: 100%;
+  height: 100%;
+}
+
+.story:hover {
+  transition: var(--transition);
+  box-shadow: 3px 4px 6px #0009;
+}
+
+@media screen and (min-width: 600px) {
+  .story {
+    flex: 1 1;
+  }
+}
+
+@keyframes flipIn {
+  0% {
+    transform: rotate3d(0, 1, 0, 90deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+}
+
+@keyframes flipOut {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 90deg);
+  }
+}
+
+.header {
+  background-color: var(--primary);
+  color: var(--secondary);
+  padding: 1em;
+  border-radius: 1em 1em 0 0;
+  transition: var(--transition);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.currentUserHeader {
+  background-color: var(--focus-dark);
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid var(--success);
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    border-top: 5px solid #8f4;
+  }
+  50% {
+    border-top: 5px solid #044;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-top: 5px solid #8f4;
+  }
+}
+
+.body {
+  background-color: var(--secondary);
+  padding: 1em;
+  transition: var(--transition);
+  border-radius: 0 0 1em 1em;
+  width: 100%;
+}
+
+.title {
+  margin-bottom: 1em;
+}
+
+.message {
+  margin-bottom: 1em;
+}
+.tags {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+.editBtn {
+  background-color: transparent;
+  color: var(--success);
+}
+
+.deleteBtn {
+  background-color: transparent;
+  padding: 0.4em 0em 0.4em 0.4em;
+  color: var(--danger);
+}
+
+.deleteBtn:hover,
+.editBtn:hover {
+  background-color: transparent;
+  transform: skew(-15deg);
+}
