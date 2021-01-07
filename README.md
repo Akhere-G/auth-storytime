@@ -1,3 +1,1 @@
-A social app made using React for the front end, node and express for the rest
-api and mongodb for the database. Users can make an account, sign in and add,
-update, read and delete stories. By Akhere Ihoeghinlan
+Storytime is a social app that allows users to create and share stories. Users can create accounts, login and add their favourite stories for other users to see. Stories can also be deleted and added. Authentication is done by json web tokens, the front end is built using React, MongoDB is used for the database, and express and node are used to create the rest api. 
