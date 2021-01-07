@@ -60,7 +60,7 @@ const Register = () => {
 
   return (
     <main>
-      <section className='section'>
+      <section className='section-small'>
         <AppBar />
         <Form {...formProps} />
       </section>

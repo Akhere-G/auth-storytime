@@ -13,6 +13,8 @@
   --focus-dark: #f84;
 
   --max-width: 1000px;
+  --max-width-small: 700px;
+
   --transition: all linear 300ms;
 }
 
@@ -100,7 +102,18 @@ button:hover,
   background-color: var(--primary-light);
 }
 
-.section > h2 {
+.section-small {
+  max-width: var(--max-width-small);
+  margin: auto;
+  width: 100%;
+}
+
+.section {
+  max-width: var(--max-width);
+}
+
+.section > h2,
+.section-small > h2 {
   margin-bottom: 1em;
   color: var(--secondary);
 }

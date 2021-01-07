@@ -52,7 +52,7 @@ const Login = () => {
   return (
     <main>
       <Head title='Storytime | Login' />
-      <section className='section'>
+      <section className='section-small'>
         <AppBar />
         <Form {...formProps} />
       </section>
