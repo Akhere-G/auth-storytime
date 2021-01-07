@@ -6,13 +6,8 @@ const Stories = ({ stories, deleteStory, editStory }) => {
     <>
       {stories.map(story => {
         return (
-          <li>
-            <Story
-              key={story._id}
-              {...story}
-              deleteStory={deleteStory}
-              editStory={editStory}
-            />
+          <li key={story._id}>
+            <Story {...story} deleteStory={deleteStory} editStory={editStory} />
           </li>
         );
       })}

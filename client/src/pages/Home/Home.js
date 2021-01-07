@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from "react";
 import { Form, Stories } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
 import * as storyActions from "../../actions/storyActions";
@@ -27,6 +33,14 @@ const Home = () => {
     dispatch(storyActions.getStories());
   }, [dispatch]);
 
+  const clearForm = useCallback(() => {
+    setStoryData({
+      title: "",
+      message: "",
+      tags: [],
+    });
+  }, []);
+
   const onSubmit = useCallback(
     e => {
       e.preventDefault();
@@ -52,15 +66,8 @@ const Home = () => {
       }
       clearForm();
     },
-    [dispatch, form.currentStory, form.mode, storyData]
+    [dispatch, form, storyData, clearForm]
   );
-  const clearForm = () => {
-    setStoryData({
-      title: "",
-      message: "",
-      tags: [],
-    });
-  };
 
   const deleteStory = useCallback(
     _id => {
@@ -85,56 +92,60 @@ const Home = () => {
     [dispatch]
   );
 
-  const formProps = {
-    formGroups: [
-      {
-        labelText: "Title",
-        inputType: "text",
-        inputValue: storyData.title,
-        setValue: val => {
-          setStoryData(prev => ({
-            ...prev,
-            title: val,
-          }));
+  const formProps = useMemo(() => {
+    return {
+      formGroups: [
+        {
+          labelText: "Title",
+          inputType: "text",
+          inputValue: storyData.title,
+          setValue: val => {
+            setStoryData(prev => ({
+              ...prev,
+              title: val,
+            }));
+          },
+          inputRef: titleRef,
         },
-        inputRef: titleRef,
-      },
-      {
-        labelText: "Message",
-        inputType: "text",
-        inputValue: storyData.message,
-        setValue: val => {
-          setStoryData(prev => ({
-            ...prev,
-            message: val,
-          }));
+        {
+          labelText: "Message",
+          inputType: "text",
+          inputValue: storyData.message,
+          setValue: val => {
+            setStoryData(prev => ({
+              ...prev,
+              message: val,
+            }));
+          },
+          inputRef: null,
         },
-        inputRef: null,
-      },
-      {
-        labelText: "Tags - separate with commas",
-        inputType: "text",
-        inputValue: storyData.tags,
-        setValue: val => {
-          setStoryData(prev => ({
-            ...prev,
-            tags: val.split(","),
-          }));
+        {
+          labelText: "Tags - separate with commas",
+          inputType: "text",
+          inputValue: storyData.tags,
+          setValue: val => {
+            setStoryData(prev => ({
+              ...prev,
+              tags: val.split(","),
+            }));
+          },
+          inputRef: null,
         },
-        inputRef: null,
-      },
-    ],
-    onSubmit,
-    title:
-      form.mode === formActionTypes.ADD_MODE
-        ? "Add a story"
-        : "Update an story",
-    submitText:
-      form.mode === formActionTypes.ADD_MODE ? "Add a story" : "Update a story",
-    linkPath: "/",
-    linkText: "",
-    errorText: errorMsg,
-  };
+      ],
+      onSubmit,
+      title:
+        form.mode === formActionTypes.ADD_MODE
+          ? "Add a story"
+          : "Update an story",
+      submitText:
+        form.mode === formActionTypes.ADD_MODE
+          ? "Add a story"
+          : "Update a story",
+      linkPath: "/",
+      linkText: "",
+      errorText: errorMsg,
+    };
+  }, [errorMsg, form, storyData, onSubmit]);
 
   return (
     <section className='section'>
