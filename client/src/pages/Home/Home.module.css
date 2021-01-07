@@ -1,28 +1,36 @@
-.home li {
-  width: 100%;
-  height: 100%;
-  margin: 0em 0em 1em 0em;
+.home {
+  display: flex;
+  flex-direction: column;
 }
 
-@media screen and (min-width: 600px) {
-  .home {
-    display: flex;
-    flex-wrap: wrap;
-  }
+.home li {
+  margin: 0.25rem;
+  margin-bottom: 1rem;
+}
+.form {
+  flex: 1;
+}
 
+.form * {
+  width: 100%;
+}
+@media screen and (min-width: 700px) {
+  .home {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+    align-content: stretch;
+  }
   .home li {
-    width: 100%;
-    height: 100%;
-    margin: 0.5em;
-    flex-grow: 1;
+    margin: 0.5rem;
+
+    flex: 1;
+    display: flex;
   }
 
   .form {
-    flex: 0.7;
-    min-width: 50%;
-  }
-
-  .stories {
-    flex: 2;
+    flex: 1;
+    min-width: 300px;
   }
 }

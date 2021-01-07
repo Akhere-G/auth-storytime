@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Form, Stories } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
 import * as storyActions from "../../actions/storyActions";
@@ -27,31 +27,33 @@ const Home = () => {
     dispatch(storyActions.getStories());
   }, [dispatch]);
 
-  const onSubmit = e => {
-    e.preventDefault();
-    if (!storyData.title || !storyData.title.trim()) {
-      setErrorMsg("Please add a title");
-      return;
-    } else if (!storyData.message || !storyData.message.trim()) {
-      setErrorMsg("Please add a message");
-      return;
-    } else if (!storyData.tags) {
-      setErrorMsg("Please add some tags");
-      return;
-    }
-    setErrorMsg("");
+  const onSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      if (!storyData.title || !storyData.title.trim()) {
+        setErrorMsg("Please add a title");
+        return;
+      } else if (!storyData.message || !storyData.message.trim()) {
+        setErrorMsg("Please add a message");
+        return;
+      } else if (!storyData.tags) {
+        setErrorMsg("Please add some tags");
+        return;
+      }
+      setErrorMsg("");
 
-    if (form.mode === formActionTypes.ADD_MODE) {
-      const newStory = storyData;
-      dispatch(storyActions.addStory(newStory));
-    } else {
-      const newStory = { ...storyData, _id: form.currentStory._id };
-      dispatch(storyActions.updateStory(form.currentStory._id, newStory));
-      dispatch(formActions.switchToAddMode());
-    }
-    clearForm();
-  };
-
+      if (form.mode === formActionTypes.ADD_MODE) {
+        const newStory = storyData;
+        dispatch(storyActions.addStory(newStory));
+      } else {
+        const newStory = { ...storyData, _id: form.currentStory._id };
+        dispatch(storyActions.updateStory(form.currentStory._id, newStory));
+        dispatch(formActions.switchToAddMode());
+      }
+      clearForm();
+    },
+    [dispatch, form.currentStory, form.mode, storyData]
+  );
   const clearForm = () => {
     setStoryData({
       title: "",
@@ -60,22 +62,28 @@ const Home = () => {
     });
   };
 
-  const deleteStory = _id => {
-    dispatch(storyActions.deleteStory(_id));
-  };
+  const deleteStory = useCallback(
+    _id => {
+      dispatch(storyActions.deleteStory(_id));
+    },
+    [dispatch]
+  );
 
-  const editStory = (_id, storyData) => {
-    dispatch(formActions.switchToEditMode(_id, storyData));
-    setStoryData({
-      title: storyData.title,
-      message: storyData.message,
-      tags: storyData.tags,
-    });
-    window.scrollTo({ top: 0, behaviour: "smooth" });
-    setTimeout(() => {
-      titleRef.current.focus();
-    }, 400);
-  };
+  const editStory = useCallback(
+    (_id, storyData) => {
+      dispatch(formActions.switchToEditMode(_id, storyData));
+      setStoryData({
+        title: storyData.title,
+        message: storyData.message,
+        tags: storyData.tags,
+      });
+      window.scrollTo({ top: 0, behaviour: "smooth" });
+      setTimeout(() => {
+        titleRef.current.focus();
+      }, 400);
+    },
+    [dispatch]
+  );
 
   const formProps = {
     formGroups: [
@@ -135,7 +143,6 @@ const Home = () => {
         <li className={styles.form}>
           <Form {...formProps} {...form} />
         </li>
-
         <Stories
           stories={stories}
           deleteStory={deleteStory}

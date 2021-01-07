@@ -6,7 +6,7 @@ const Stories = ({ stories, deleteStory, editStory }) => {
     <>
       {stories.map(story => {
         return (
-          <li className={styles.story}>
+          <li>
             <Story
               key={story._id}
               {...story}
