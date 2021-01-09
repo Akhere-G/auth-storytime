@@ -10,11 +10,12 @@
   background-color: var(--secondary);
   transition: var(--transition);
   border-radius: 1em;
-  box-shadow: 2px 3px 4px #0007;
   min-width: 250px;
 }
 
-.story:hover {
+.story:hover .header, 
+.story:hover .footer
+{
   transition: var(--transition);
   box-shadow: 3px 4px 6px #0009;
 }
@@ -52,7 +53,8 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  height: 20%;
+  height: 30%;
+  box-shadow: 2px 3px 4px #0007;
 }
 
 .currentUserHeader {
@@ -91,6 +93,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 80%;
+  box-shadow: 2px 3px 4px #0007;
 }
 
 .title {
