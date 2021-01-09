@@ -14,7 +14,7 @@
 }
 
 .story:hover .header, 
-.story:hover .footer
+.story:hover .body
 {
   transition: var(--transition);
   box-shadow: 3px 4px 6px #0009;
@@ -53,7 +53,7 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  height: 30%;
+  min-height: 20%;
   box-shadow: 2px 3px 4px #0007;
 }
 
