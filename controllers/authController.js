@@ -23,7 +23,7 @@ module.exports.login = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ msg: "User not found exist" });
+      return res.status(400).json({ msg: "User not found" });
     }
 
     //Validate password
